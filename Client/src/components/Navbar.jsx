@@ -1,8 +1,13 @@
+import { Link } from "react-router-dom";
 import { Disclosure } from "@headlessui/react";
-import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import { RxCross1 } from "react-icons/Rx";
+import { RxHamburgerMenu } from "react-icons/Rx";
+import { FaSearch } from "react-icons/fa";
+import { BiUserCircle } from "react-icons/Bi";
+import { CgShoppingCart } from "react-icons/cg";
 
 const navigation = [
-  { name: "Dashboard", href: "#", current: true },
+  { name: "Dashboard", to: "/" },
   { name: "Team", href: "#", current: false },
   { name: "Projects", href: "#", current: false },
   { name: "Calendar", href: "#", current: false },
@@ -12,7 +17,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function Example() {
+function Navbar() {
   return (
     <Disclosure as="nav" className="bg-gray-800">
       {({ open }) => (
@@ -24,31 +29,36 @@ export default function Example() {
                 <Disclosure.Button className="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
                   <span className="sr-only">Open main menu</span>
                   {open ? (
-                    <XMarkIcon className="block h-6 w-6" aria-hidden="true" />
+                    <RxCross1 className="block h-6 w-6" aria-hidden="true" />
                   ) : (
-                    <Bars3Icon className="block h-6 w-6" aria-hidden="true" />
+                    <RxHamburgerMenu
+                      className="block h-6 w-6"
+                      aria-hidden="true"
+                    />
                   )}
                 </Disclosure.Button>
               </div>
               <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                 <div className="flex flex-shrink-0 items-center">
-                  <img
-                    className="block h-8 w-auto lg:hidden"
-                    src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
-                    alt="Your Company"
-                  />
-                  <img
-                    className="hidden h-8 w-auto lg:block"
-                    src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
-                    alt="Your Company"
-                  />
+                  <Link to="/">
+                    <img
+                      className="block h-8 w-auto lg:hidden"
+                      src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
+                      alt="Your Company"
+                    />
+                    <img
+                      className="hidden h-8 w-auto lg:block"
+                      src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
+                      alt="Your Company"
+                    />
+                  </Link>
                 </div>
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-4">
                     {navigation.map((item) => (
-                      <a
+                      <Link
                         key={item.name}
-                        href={item.href}
+                        to={item.to}
                         className={classNames(
                           item.current
                             ? "bg-gray-900 text-white"
@@ -58,19 +68,43 @@ export default function Example() {
                         aria-current={item.current ? "page" : undefined}
                       >
                         {item.name}
-                      </a>
+                      </Link>
                     ))}
+                  </div>
+                </div>
+
+                <div className="hidden sm:ml-6 sm:block">
+                  <div className="flex items-center justify-center ">
+                    <input
+                      type="text"
+                      placeholder="Search"
+                      className="border border-gray-300 px-4 py-1 rounded-l-md focus:outline-none focus:ring focus:border-blue-300"
+                    />
+                    <button className="bg-blue-500 text-white px-4 py-2 rounded-r-md hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300">
+                      <FaSearch className="h-5 w-5" />
+                    </button>
                   </div>
                 </div>
               </div>
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                <button
-                  type="button"
-                  className="rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
-                >
-                  <span className="sr-only">View notifications</span>
-                  <BellIcon className="h-6 w-6" aria-hidden="true" />
-                </button>
+                <Link to="#">
+                  <button
+                    type="button"
+                    className="rounded-full mr-2 lg:mr-6 bg-gray-800 p-1 text-gray-400 hover:text-white "
+                  >
+                    <span className="sr-only">Add to cart</span>
+                    <CgShoppingCart className="h-6 w-6" aria-hidden="true" />
+                  </button>
+                </Link>
+                <Link to="/signIn">
+                  <button
+                    type="button"
+                    className="rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white "
+                  >
+                    <span className="sr-only">User Account</span>
+                    <BiUserCircle className="h-6 w-6" aria-hidden="true" />
+                  </button>
+                </Link>
               </div>
             </div>
           </div>
@@ -93,6 +127,18 @@ export default function Example() {
                   {item.name}
                 </Disclosure.Button>
               ))}
+              <div className="sm:hidden">
+                <div className="flex items-center justify-center ">
+                  <input
+                    type="text"
+                    placeholder="Search"
+                    className="border border-gray-300 px-4 py-1 rounded-l-md focus:outline-none focus:ring focus:border-blue-300"
+                  />
+                  <button className="bg-blue-500 text-white px-4 py-2 rounded-r-md hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300">
+                    <FaSearch className="h-5 w-5" />
+                  </button>
+                </div>
+              </div>
             </div>
           </Disclosure.Panel>
         </>
@@ -100,3 +146,4 @@ export default function Example() {
     </Disclosure>
   );
 }
+export default Navbar;
