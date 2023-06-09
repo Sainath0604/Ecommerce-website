@@ -5,6 +5,7 @@ import { RxHamburgerMenu } from "react-icons/Rx";
 import { FaSearch } from "react-icons/fa";
 import { BiUserCircle } from "react-icons/Bi";
 import { CgShoppingCart } from "react-icons/cg";
+import logo from "../Logo/logo.png";
 
 const navigation = [
   { name: "Dashboard", to: "/" },
@@ -43,12 +44,12 @@ function Navbar() {
                   <Link to="/">
                     <img
                       className="block h-8 w-auto lg:hidden"
-                      src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
+                      src={logo}
                       alt="Your Company"
                     />
                     <img
                       className="hidden h-8 w-auto lg:block"
-                      src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
+                      src={logo}
                       alt="Your Company"
                     />
                   </Link>
