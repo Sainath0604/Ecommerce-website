@@ -6,6 +6,9 @@ app.use(cors());
 
 const bcrypt = require("bcrypt"); //For password encryption
 
+const jwt = require("jsonwebtoken");
+const JWT_secret = "b6e8b3f89c7d4f2a9d51e8b7af6c3d0e";
+
 //Declaring port
 
 app.listen(5000, () => {
@@ -57,4 +60,29 @@ app.post("/register", async (req, res) => {
   } catch (error) {
     res.send({ status: "error" });
   }
+});
+
+// Login API
+
+app.post("/login", async (req, res) => {
+  const { email, password } = req.body;
+
+  const user = await User.findOne({ email });
+
+  if (!user) {
+    return res.json({
+      error: "User does not exits, please register if you haven't",
+    });
+  }
+  if (await bcrypt.compare(password, user.password)) {
+    //creates token with secret
+    const token = jwt.sign({ email: user.email }, JWT_secret);
+
+    if (res.status(201)) {
+      return res.json({ status: "ok", data: token });
+    } else {
+      return res.json({ status: "error" });
+    }
+  }
+  res.json({ status: "error", error: "Invalid Credentials" });
 });
