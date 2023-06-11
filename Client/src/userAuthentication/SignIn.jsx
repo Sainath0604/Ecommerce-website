@@ -9,6 +9,29 @@ function SignIn() {
 
   function loginUser(e) {
     e.preventDefault();
+    console.log(email, password);
+    fetch("http://localhost:5000/login", {
+      method: "POST",
+      crossDomain: true,
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
+      body: JSON.stringify({
+        email,
+        password,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data, "User logged-in");
+        if (data.status == "ok") {
+          alert("User successfully logged-in");
+        } else {
+          alert("Invalid Credentials, please register if you haven't");
+        }
+      });
   }
 
   return (
