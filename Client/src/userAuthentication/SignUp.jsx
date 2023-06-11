@@ -11,6 +11,36 @@ function SignIn() {
 
   function registerUser(e) {
     e.preventDefault();
+    console.log(fName, lName, email, password);
+    fetch("http://localhost:5000/register", {
+      method: "POST",
+      crossDomain: true,
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
+      body: JSON.stringify({
+        fName,
+        lName,
+        email,
+        password,
+        userType,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.error) {
+          alert(data.error);
+          console.log("User aleready exists");
+        } else {
+          alert("User Registered, Now you can proceed with login");
+          console.log(data, "User Registered");
+          if (data.status == "ok") {
+            window.location.href = "./signIn";
+          }
+        }
+      });
   }
 
   function UserOrAdmin() {

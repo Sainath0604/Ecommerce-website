@@ -4,6 +4,8 @@ app.use(express.json());
 const cors = require("cors"); //middleware
 app.use(cors());
 
+const bcrypt = require("bcrypt"); //For password encryption
+
 //Declaring port
 
 app.listen(5000, () => {
@@ -24,3 +26,35 @@ mongoose
     console.log("connected to Database");
   })
   .catch((e) => console.log(e));
+
+//Importing schema
+require("./models/userSchema.jsx");
+const User = mongoose.model("userInfo");
+
+//Register API
+
+app.post("/register", async (req, res) => {
+  console.log(req.body);
+  const { fName, lName, email, password, userType } = req.body;
+
+  const encryptedPassword = await bcrypt.hash(password, 10);
+
+  try {
+    const oldUser = await User.findOne({ email });
+
+    if (oldUser) {
+      return res.json({ error: "User already exits" });
+    }
+
+    await User.create({
+      fName,
+      lName,
+      email,
+      password: encryptedPassword,
+      userType,
+    });
+    res.send({ status: "ok" });
+  } catch (error) {
+    res.send({ status: "error" });
+  }
+});
