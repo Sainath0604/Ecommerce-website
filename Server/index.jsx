@@ -86,3 +86,27 @@ app.post("/login", async (req, res) => {
   }
   res.json({ status: "error", error: "Invalid Credentials" });
 });
+
+// Forgot password API
+
+app.post("/forgotPassword", async (req, res) => {
+  const { email } = req.body;
+  try {
+    const oldUser = await User.findOne({ email });
+    if (!oldUser) {
+      return res.json({ status: "User does not exists" });
+    }
+    const secret = JWT_secret + oldUser.password;
+    //^^made secret with JWT_SECRET and password
+    const token = jwt.sign({ email: oldUser.email, id: oldUser._id }, secret, {
+      expiresIn: "5m",
+    });
+    //^^created token with email, id and above secret which expires in 5min
+
+    const link = `http://localhost:1555/resetPassword/${oldUser._id}/${token}`;
+    console.log(link);
+  } catch (error) {
+    // res.send({ status: "error" });
+    console.log(error);
+  }
+});

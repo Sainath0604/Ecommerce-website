@@ -9,6 +9,27 @@ function ForgotPassword() {
   function resetPassword(e) {
     e.preventDefault();
     console.log("Forgot password");
+    fetch("http://localhost:5000/forgotPassword", {
+      method: "POST",
+      crossDomain: true,
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
+      body: JSON.stringify({
+        email,
+      }),
+    })
+      .then((res) => {
+        console.log(res);
+        return res.json();
+      })
+      .then((data) => {
+        console.log(data);
+        alert(data.status);
+      });
+    alert("A link to set the password to your email, please check your email");
   }
 
   return (
