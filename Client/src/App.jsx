@@ -4,6 +4,7 @@ import Home from "./components/Home";
 import Navbar from "./components/Navbar";
 import SignIn from "./userAuthentication/SignIn";
 import SignUp from "./userAuthentication/SignUp";
+import ForgotPassword from "./userAuthentication/ForgotPassword";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
             <Route path="/navbar" element={<Navbar />} />
             <Route path="/signIn" element={<SignIn />} />
             <Route path="/signUp" element={<SignUp />} />
+            <Route path="/forgotPassword" element={<ForgotPassword />} />
           </Routes>
         </Router>
       </div>
