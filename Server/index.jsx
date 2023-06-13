@@ -9,6 +9,14 @@ const bcrypt = require("bcrypt"); //For password encryption
 const jwt = require("jsonwebtoken");
 const JWT_secret = "b6e8b3f89c7d4f2a9d51e8b7af6c3d0e";
 
+app.set("view engine", "ejs"); //For representing node UI
+
+app.use(express.urlencoded({ extended: false }));
+// ^^Parsing of URL-encoded form data in routes and access the form data via req.body
+// ^^set to false, it uses the built-in Node.js querystring library to parse the data
+
+const nodemailer = require("nodemailer");
+
 //Declaring port
 
 app.listen(5000, () => {
@@ -103,7 +111,7 @@ app.post("/forgotPassword", async (req, res) => {
     });
     //^^created token with email, id and above secret which expires in 5min
 
-    const link = `http://localhost:1555/resetPassword/${oldUser._id}/${token}`;
+    const link = `http://localhost:5000/resetPassword/${oldUser._id}/${token}`;
     console.log(link);
 
     const transporter = nodemailer.createTransport({
@@ -187,5 +195,25 @@ app.post("/resetPassword/:id/:token", async (req, res) => {
   } catch (error) {
     res.json({ status: "Something went wrong" });
     console.log(error);
+  }
+});
+
+// User data API
+
+app.post("/userData", async (req, res) => {
+  const { token } = req.body;
+  try {
+    const user = jwt.verify(token, JWT_secret);
+    const userEmail = user.email;
+
+    User.findOne({ email: userEmail })
+      .then((data) => {
+        res.send({ staus: "ok", data: data });
+      })
+      .catch((error) => {
+        res.send({ status: "error", data: error });
+      });
+  } catch (error) {
+    res.send({ satus: "error" });
   }
 });
