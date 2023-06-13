@@ -5,6 +5,8 @@ import Navbar from "./components/Navbar";
 import SignIn from "./userAuthentication/SignIn";
 import SignUp from "./userAuthentication/SignUp";
 import ForgotPassword from "./userAuthentication/ForgotPassword";
+import UserDetails from "./userAuthentication/UserDetails";
+import UserHome from "./userAuthentication/UserHome";
 
 function App() {
   return (
@@ -17,6 +19,8 @@ function App() {
             <Route path="/signIn" element={<SignIn />} />
             <Route path="/signUp" element={<SignUp />} />
             <Route path="/forgotPassword" element={<ForgotPassword />} />
+            <Route path="/userDetails" element={<UserDetails />} />
+            <Route path="/userHome" element={<UserHome />} />
           </Routes>
         </Router>
       </div>

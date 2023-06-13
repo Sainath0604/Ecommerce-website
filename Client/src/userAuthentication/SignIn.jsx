@@ -28,6 +28,9 @@ function SignIn() {
         console.log(data, "User logged-in");
         if (data.status == "ok") {
           alert("User successfully logged-in");
+          window.localStorage.setItem("token", data.data);
+          window.localStorage.setItem("loggedIn", true);
+          window.location.href = "./userDetails";
         } else {
           alert("Invalid Credentials, please register if you haven't");
         }
