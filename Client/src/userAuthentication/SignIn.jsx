@@ -30,6 +30,7 @@ function SignIn() {
           alert("User successfully logged-in");
           window.localStorage.setItem("token", data.data);
           window.localStorage.setItem("loggedIn", true);
+          window.localStorage.setItem("userType", data.userType);
           window.location.href = "./userDetails";
         } else {
           alert("Invalid Credentials, please register if you haven't");

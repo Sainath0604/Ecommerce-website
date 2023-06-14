@@ -7,6 +7,7 @@ import SignUp from "./userAuthentication/SignUp";
 import ForgotPassword from "./userAuthentication/ForgotPassword";
 import UserDetails from "./userAuthentication/UserDetails";
 import UserHome from "./userAuthentication/UserHome";
+import AdminSignUp from "./userAuthentication/AdminSignUp";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
             <Route path="/forgotPassword" element={<ForgotPassword />} />
             <Route path="/userDetails" element={<UserDetails />} />
             <Route path="/userHome" element={<UserHome />} />
+            <Route path="/adminSignUp" element={<AdminSignUp />} />
           </Routes>
         </Router>
       </div>

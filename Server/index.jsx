@@ -87,7 +87,7 @@ app.post("/login", async (req, res) => {
     const token = jwt.sign({ email: user.email }, JWT_secret);
 
     if (res.status(201)) {
-      return res.json({ status: "ok", data: token });
+      return res.json({ status: "ok", data: token, userType: user.userType });
     } else {
       return res.json({ status: "error" });
     }
