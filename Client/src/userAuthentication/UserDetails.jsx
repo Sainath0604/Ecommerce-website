@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
 import UserHome from "./UserHome";
+import AdminPanel from "./AdminPanel";
 
 function UserDetails() {
   const [userData, setUserData] = useState({});
@@ -30,7 +31,7 @@ function UserDetails() {
   }, []);
 
   return admin ? (
-    <h1>Welcome to admin page</h1>
+    <AdminPanel />
   ) : (
     userData && Object.keys(userData).length !== 0 && (
       <UserHome userData={userData} />

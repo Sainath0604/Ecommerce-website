@@ -8,6 +8,7 @@ import ForgotPassword from "./userAuthentication/ForgotPassword";
 import UserDetails from "./userAuthentication/UserDetails";
 import UserHome from "./userAuthentication/UserHome";
 import AdminSignUp from "./userAuthentication/AdminSignUp";
+import AdminPanel from "./userAuthentication/AdminPanel";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
             <Route path="/userDetails" element={<UserDetails />} />
             <Route path="/userHome" element={<UserHome />} />
             <Route path="/adminSignUp" element={<AdminSignUp />} />
+            <Route path="/adminPanel" element={<AdminPanel />} />
           </Routes>
         </Router>
       </div>
