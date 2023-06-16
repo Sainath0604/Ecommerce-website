@@ -9,6 +9,7 @@ import UserDetails from "./userAuthentication/UserDetails";
 import UserHome from "./userAuthentication/UserHome";
 import AdminSignUp from "./userAuthentication/AdminSignUp";
 import AdminPanel from "./userAuthentication/AdminPanel";
+import ViewUser from "./userAuthentication/ViewUser";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
             <Route path="/userHome" element={<UserHome />} />
             <Route path="/adminSignUp" element={<AdminSignUp />} />
             <Route path="/adminPanel" element={<AdminPanel />} />
+            <Route path="/viewUser" element={<ViewUser />} />
           </Routes>
         </Router>
       </div>
