@@ -44,5 +44,4 @@ UserHome.defaultProps = {
   },
 };
 
-
 export default UserHome;
