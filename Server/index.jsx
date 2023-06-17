@@ -228,3 +228,18 @@ app.get("/getAllUser", async (req, res) => {
     console.log(error);
   }
 });
+
+// Delete user API
+
+app.post("/deleteUser", async (req, res) => {
+  const { userid } = req.body;
+  try {
+    await User.deleteOne({ _id: userid }),
+      function (err, res) {
+        console.log(err);
+      };
+    res.send({ status: "ok", data: "Deleted user" });
+  } catch (error) {
+    console.log(error);
+  }
+});
