@@ -238,8 +238,26 @@ app.post("/deleteUser", async (req, res) => {
       function (err, res) {
         console.log(err);
       };
-    res.send({ status: "ok", data: "Deleted user" });
+    res.send({ status: "ok", data: "User deleted from database" });
   } catch (error) {
     console.log(error);
+  }
+});
+
+// Edit user API
+
+app.post("/editUser", async (req, res) => {
+  const { userid, newfName, newlName, newEmail } = req.body;
+  try {
+    await User.updateOne(
+      { _id: userid },
+      { fName: newfName, lName: newlName, email: newEmail }
+    );
+    res.send({ status: "ok", data: "User information updated" });
+  } catch (error) {
+    console.log(error);
+    res
+      .status(500)
+      .send({ status: "error", message: "Failed to update user information" });
   }
 });
