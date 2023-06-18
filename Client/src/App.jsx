@@ -10,6 +10,7 @@ import UserHome from "./userAuthentication/UserHome";
 import AdminSignUp from "./userAuthentication/AdminSignUp";
 import AdminPanel from "./userAuthentication/AdminPanel";
 import ViewUser from "./userAuthentication/ViewUser";
+import EditUser from "./userAuthentication/EditUser";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
             <Route path="/adminSignUp" element={<AdminSignUp />} />
             <Route path="/adminPanel" element={<AdminPanel />} />
             <Route path="/viewUser" element={<ViewUser />} />
+            <Route path="/editUser" element={<EditUser />} />
           </Routes>
         </Router>
       </div>
