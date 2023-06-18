@@ -2,7 +2,10 @@ import { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import { RiDeleteBin6Line } from "react-icons/Ri";
 import { BiEditAlt } from "react-icons/Bi";
-import { Link } from "react-router-dom";
+import EditUser from "./EditUser";
+import Popup from "reactjs-popup";
+import "reactjs-popup/dist/index.css";
+
 function ViewUser() {
   const [data, setData] = useState([]);
 
@@ -40,8 +43,10 @@ function ViewUser() {
           alert(data.data);
           getAllUser();
         });
+
+      console.log(name, id);
     } else {
-      alert("Oops..!! Something went wrong.");
+      console.log("Oops ..!!, Something went wrong please try again later");
     }
   };
 
@@ -84,7 +89,7 @@ function ViewUser() {
               <th className="border p-2 w-[16vw]">Email</th>
               <th className="border p-2 w-[11vw]">User type</th>
               <th className="border p-2 w-[11vw]">Delete</th>
-              <th className="border p-2 w-[11vw]">Edit user</th>
+              <th className="border p-2 w-[11vw]">Edit</th>
             </tr>
           </thead>
           <tbody>
@@ -108,18 +113,31 @@ function ViewUser() {
                     </div>
                   </td>
                   <td className="border p-2">
-                    <div className="flex justify-center">
-                      <Link to="/editUser">
-                        <BiEditAlt
-                          id={i._id}
-                          fName={i.fName}
-                          lName={i.lName}
-                          email={i.email}
-                          onEdit={(id, newfName, newlName, newEmail) =>
-                            editUser(id, newfName, newlName, newEmail)
-                          }
-                        />
-                      </Link>
+                    <div className="flex justify-center ">
+                      <Popup
+                        trigger={
+                          <button className="button">
+                            <BiEditAlt />
+                          </button>
+                        }
+                        modal
+                        nested
+                      >
+                        {(close) => (
+                          <div>
+                            <EditUser
+                              id={i._id}
+                              fName={i.fName}
+                              lName={i.lName}
+                              email={i.email}
+                              onEdit={(id, newfName, newlName, newEmail) =>
+                                editUser(id, newfName, newlName, newEmail)
+                              }
+                              onCancel={close}
+                            />
+                          </div>
+                        )}
+                      </Popup>
                     </div>
                   </td>
                 </tr>

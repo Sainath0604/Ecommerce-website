@@ -80,12 +80,12 @@ const EditUser = ({ id, fName, lName, email, onEdit, onCancel }) => {
 };
 
 EditUser.propTypes = {
-  id: PropTypes.number,
-  fName: PropTypes.string.isRequired,
-  lName: PropTypes.string.isRequired,
-  email: PropTypes.string.isRequired,
-  onEdit: PropTypes.func.isRequired,
-  onCancel: PropTypes.func.isRequired,
+  id: PropTypes.string,
+  fName: PropTypes.string,
+  lName: PropTypes.string,
+  email: PropTypes.string,
+  onEdit: PropTypes.func,
+  onCancel: PropTypes.func,
 };
 
 export default EditUser;
