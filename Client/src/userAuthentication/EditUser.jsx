@@ -1,17 +1,18 @@
+import PropTypes from "prop-types";
 import { useState } from "react";
 
-const EditUser = () => {
-  const [newfName, setNewfName] = useState("");
-  const [newlName, setNewlName] = useState("");
-  const [newEmail, setNewEmail] = useState("");
+const EditUser = ({ id, fName, lName, email, onEdit, onCancel }) => {
+  const [newfName, setNewfName] = useState(fName);
+  const [newlName, setNewlName] = useState(lName);
+  const [newEmail, setNewEmail] = useState(email);
 
   const handleEdit = () => {
-    console.log("edited");
-    console.log(newfName, newEmail, newlName);
+    onEdit(id, newfName, newlName, newEmail);
+    onCancel();
   };
 
   const handleCancel = () => {
-    console.log("cancelled");
+    onCancel();
   };
 
   return (
@@ -76,6 +77,15 @@ const EditUser = () => {
       </div>
     </div>
   );
+};
+
+EditUser.propTypes = {
+  id: PropTypes.number,
+  fName: PropTypes.string.isRequired,
+  lName: PropTypes.string.isRequired,
+  email: PropTypes.string.isRequired,
+  onEdit: PropTypes.func.isRequired,
+  onCancel: PropTypes.func.isRequired,
 };
 
 export default EditUser;

@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import { RiDeleteBin6Line } from "react-icons/Ri";
+import { BiEditAlt } from "react-icons/Bi";
+import { Link } from "react-router-dom";
 function ViewUser() {
   const [data, setData] = useState([]);
 
@@ -43,6 +45,32 @@ function ViewUser() {
     }
   };
 
+  const editUser = (id, newfName, newlName, newEmail) => {
+    fetch("http://localhost:5000/editUser", {
+      method: "POST",
+      crossDomain: true,
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
+      body: JSON.stringify({
+        userid: id,
+        newfName: newfName,
+        newlName: newlName,
+        newEmail: newEmail,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        alert(data.data);
+        getAllUser();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   return (
     <>
       <Navbar />
@@ -56,6 +84,7 @@ function ViewUser() {
               <th className="border p-2 w-[16vw]">Email</th>
               <th className="border p-2 w-[11vw]">User type</th>
               <th className="border p-2 w-[11vw]">Delete</th>
+              <th className="border p-2 w-[11vw]">Edit user</th>
             </tr>
           </thead>
           <tbody>
@@ -76,6 +105,21 @@ function ViewUser() {
                         className="cursor-pointer text-indigo-800"
                         onClick={(e) => deleteUser(e, i._id, i.fName)}
                       />
+                    </div>
+                  </td>
+                  <td className="border p-2">
+                    <div className="flex justify-center">
+                      <Link to="/editUser">
+                        <BiEditAlt
+                          id={i._id}
+                          fName={i.fName}
+                          lName={i.lName}
+                          email={i.email}
+                          onEdit={(id, newfName, newlName, newEmail) =>
+                            editUser(id, newfName, newlName, newEmail)
+                          }
+                        />
+                      </Link>
                     </div>
                   </td>
                 </tr>
