@@ -31,7 +31,7 @@ function UserDetails() {
   }, []);
 
   return admin ? (
-    <AdminPanel />
+    <AdminPanel userData={userData} />
   ) : (
     userData && Object.keys(userData).length !== 0 && (
       <UserHome userData={userData} />
