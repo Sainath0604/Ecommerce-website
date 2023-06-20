@@ -11,6 +11,7 @@ import AdminSignUp from "./userAuthentication/AdminSignUp";
 import AdminPanel from "./userAuthentication/AdminPanel";
 import ViewUser from "./userAuthentication/ViewUser";
 import EditUser from "./userAuthentication/EditUser";
+import AdminNav from "./userAuthentication/AdminNav";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
             <Route path="/adminPanel" element={<AdminPanel />} />
             <Route path="/viewUser" element={<ViewUser />} />
             <Route path="/editUser" element={<EditUser />} />
+            <Route path="/adminNav" element={<AdminNav />} />
           </Routes>
         </Router>
       </div>

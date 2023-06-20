@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import Navbar from "../components/Navbar";
 import { RiDeleteBin6Line } from "react-icons/Ri";
 import { BiEditAlt } from "react-icons/Bi";
 import EditUser from "./EditUser";
 import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
+import AdminNav from "./AdminNav";
 
 function ViewUser() {
   const [data, setData] = useState([]);
@@ -78,73 +78,89 @@ function ViewUser() {
 
   return (
     <>
-      <Navbar />
-      <div className="mt-5 flex justify-center w-auto">
-        <table className="border border-separate w-[60vw]">
-          <caption className="caption-top m-5">All users information</caption>
-          <thead className="h-14">
-            <tr>
-              <th className="border p-2 w-[11vw]">Name</th>
-              <th className="border p-2 w-[11vw]">Surname</th>
-              <th className="border p-2 w-[16vw]">Email</th>
-              <th className="border p-2 w-[11vw]">User type</th>
-              <th className="border p-2 w-[11vw]">Delete</th>
-              <th className="border p-2 w-[11vw]">Edit</th>
-            </tr>
-          </thead>
-          <tbody>
-            {/* mapping the fetched data */}
-            {data.map((i, index) => {
-              return (
-                <tr
-                  key={i._id}
-                  className={`${index % 2 === 0 ? "bg-gray-100" : "bg-white"}`}
-                >
-                  <td className="border p-2">{i.fName}</td>
-                  <td className="border p-2">{i.lName}</td>
-                  <td className="border p-2">{i.email}</td>
-                  <td className="border p-2">{i.userType}</td>
-                  <td className="border p-2">
-                    <div className="flex justify-center">
-                      <RiDeleteBin6Line
-                        className="cursor-pointer text-indigo-800"
-                        onClick={(e) => deleteUser(e, i._id, i.fName)}
-                      />
-                    </div>
-                  </td>
-                  <td className="border p-2">
-                    <div className="flex justify-center ">
-                      <Popup
-                        trigger={
-                          <button className="button">
-                            <BiEditAlt />
-                          </button>
-                        }
-                        modal
-                        nested
-                      >
-                        {(close) => (
-                          <div>
-                            <EditUser
-                              id={i._id}
-                              fName={i.fName}
-                              lName={i.lName}
-                              email={i.email}
-                              onEdit={(id, newfName, newlName, newEmail) =>
-                                editUser(id, newfName, newlName, newEmail)
-                              }
-                              onCancel={close}
-                            />
-                          </div>
-                        )}
-                      </Popup>
-                    </div>
-                  </td>
+      <div className=" md:flex">
+        <AdminNav />
+        <div className="flex sm:w-full md:w-4/5 justify-center">
+          <div>
+            <table className="border border-separate border-gray-500 w-[60vw]">
+              <caption className="caption-top my-8 lg:my-16 text-3xl font-bold text-gray-800">
+                All Users Information
+              </caption>
+              <thead className="h-14">
+                <tr>
+                  <th className="border border-gray-500 p-2 w-[11vw]">Name</th>
+                  <th className="border border-gray-500 p-2 w-[11vw]">
+                    Surname
+                  </th>
+                  <th className="border border-gray-500 p-2 w-[16vw]">Email</th>
+                  <th className="border border-gray-500 p-2 w-[11vw]">
+                    User type
+                  </th>
+                  <th className="border border-gray-500 p-2 w-[11vw]">
+                    Delete
+                  </th>
+                  <th className="border border-gray-500 p-2 w-[11vw]">Edit</th>
                 </tr>
-              );
-            })}
-          </tbody>
-        </table>
+              </thead>
+              <tbody>
+                {/* mapping the fetched data */}
+                {data.map((i, index) => {
+                  return (
+                    <tr
+                      key={i._id}
+                      className={`${
+                        index % 2 === 0 ? "bg-rose-100" : "bg-white"
+                      }`}
+                    >
+                      <td className="border border-gray-500 p-2">{i.fName}</td>
+                      <td className="border border-gray-500 p-2">{i.lName}</td>
+                      <td className="border border-gray-500 p-2">{i.email}</td>
+                      <td className="border border-gray-500 p-2">
+                        {i.userType}
+                      </td>
+                      <td className="border border-gray-500 p-2">
+                        <div className="flex justify-center">
+                          <RiDeleteBin6Line
+                            className="cursor-pointer text-gray-800"
+                            onClick={(e) => deleteUser(e, i._id, i.fName)}
+                          />
+                        </div>
+                      </td>
+                      <td className="border border-gray-500 p-2">
+                        <div className="flex justify-center ">
+                          <Popup
+                            trigger={
+                              <button className="button">
+                                <BiEditAlt className="text-gray-800" />
+                              </button>
+                            }
+                            modal
+                            nested
+                          >
+                            {(close) => (
+                              <div>
+                                <EditUser
+                                  id={i._id}
+                                  fName={i.fName}
+                                  lName={i.lName}
+                                  email={i.email}
+                                  onEdit={(id, newfName, newlName, newEmail) =>
+                                    editUser(id, newfName, newlName, newEmail)
+                                  }
+                                  onCancel={close}
+                                />
+                              </div>
+                            )}
+                          </Popup>
+                        </div>
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
     </>
   );
