@@ -33,7 +33,7 @@ function AdminNav() {
               </Link>
             </div>
             <div className="font-bold pb-4 cursor-pointer">
-              <Link to="/AdminPanel">Admin Panel</Link>
+              <Link to="/UserDetails">Admin Panel</Link>
             </div>
           </div>
           <div className="flex flex-col justify-between h-[79vh] px-8 ">
@@ -96,7 +96,7 @@ function AdminNav() {
                   </div>
                 </div>
                 <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                  <Link to="/AdminPanel">
+                  <Link to="/UserDetails">
                     <button
                       type="button"
                       className="rounded-full mr-2 lg:mr-6 bg-gray-800 p-1 text-gray-400 hover:text-white "

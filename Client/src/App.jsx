@@ -14,6 +14,8 @@ import EditUser from "./userAuthentication/EditUser";
 import AdminNav from "./userAuthentication/AdminNav";
 
 function App() {
+  const isLoggedIn = window.localStorage.getItem("loggedIn");
+
   return (
     <>
       <div>
@@ -21,7 +23,10 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/navbar" element={<Navbar />} />
-            <Route path="/signIn" element={<SignIn />} />
+            <Route
+              path="/signIn"
+              element={isLoggedIn == "true" ? <UserDetails /> : <SignIn />}
+            />
             <Route path="/signUp" element={<SignUp />} />
             <Route path="/forgotPassword" element={<ForgotPassword />} />
             <Route path="/userDetails" element={<UserDetails />} />
