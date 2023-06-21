@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 import UserHome from "./UserHome";
-import AdminPanel from "./AdminPanel";
+import AdminPanel from "../admin/AdminPanel";
 
 function UserDetails() {
   const [userData, setUserData] = useState({});

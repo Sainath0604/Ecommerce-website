@@ -7,11 +7,12 @@ import SignUp from "./userAuthentication/SignUp";
 import ForgotPassword from "./userAuthentication/ForgotPassword";
 import UserDetails from "./userAuthentication/UserDetails";
 import UserHome from "./userAuthentication/UserHome";
-import AdminSignUp from "./userAuthentication/AdminSignUp";
-import AdminPanel from "./userAuthentication/AdminPanel";
-import ViewUser from "./userAuthentication/ViewUser";
-import EditUser from "./userAuthentication/EditUser";
-import AdminNav from "./userAuthentication/AdminNav";
+import AdminSignUp from "./admin/AdminSignUp";
+import AdminPanel from "./admin/AdminPanel";
+import ViewUser from "./admin/ViewUser";
+import EditUser from "./admin/EditUser";
+import AdminNav from "./admin/AdminNav";
+import ErrorPage from "./components/ErrorPage";
 
 function App() {
   const isLoggedIn = window.localStorage.getItem("loggedIn");
@@ -36,6 +37,7 @@ function App() {
             <Route path="/viewUser" element={<ViewUser />} />
             <Route path="/editUser" element={<EditUser />} />
             <Route path="/adminNav" element={<AdminNav />} />
+            <Route path="/errorPage" element={<ErrorPage />} />
           </Routes>
         </Router>
       </div>
