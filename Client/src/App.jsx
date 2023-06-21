@@ -11,11 +11,18 @@ import AdminSignUp from "./admin/AdminSignUp";
 import AdminPanel from "./admin/AdminPanel";
 import ViewUser from "./admin/ViewUser";
 import EditUser from "./admin/EditUser";
-import AdminNav from "./admin/AdminNav";
 import ErrorPage from "./components/ErrorPage";
+import { useEffect, useState } from "react";
 
 function App() {
   const isLoggedIn = window.localStorage.getItem("loggedIn");
+
+  const [userType, setUserType] = useState(null);
+
+  useEffect(() => {
+    const userType = window.localStorage.getItem("userType");
+    setUserType(userType);
+  }, []);
 
   return (
     <>
@@ -33,10 +40,25 @@ function App() {
             <Route path="/userDetails" element={<UserDetails />} />
             <Route path="/userHome" element={<UserHome />} />
             <Route path="/adminSignUp" element={<AdminSignUp />} />
-            <Route path="/adminPanel" element={<AdminPanel />} />
-            <Route path="/viewUser" element={<ViewUser />} />
-            <Route path="/editUser" element={<EditUser />} />
-            <Route path="/adminNav" element={<AdminNav />} />
+
+            {userType === "admin" ? (
+              <Route path="/adminPanel" element={<AdminPanel />} />
+            ) : (
+              <Route path="/adminPanel" element={<ErrorPage />} />
+            )}
+
+            {userType === "admin" ? (
+              <Route path="/viewUser" element={<ViewUser />} />
+            ) : (
+              <Route path="/viewUser" element={<ErrorPage />} />
+            )}
+
+            {userType === "admin" ? (
+              <Route path="/editUser" element={<EditUser />} />
+            ) : (
+              <Route path="/editUser" element={<ErrorPage />} />
+            )}
+
             <Route path="/errorPage" element={<ErrorPage />} />
           </Routes>
         </Router>
