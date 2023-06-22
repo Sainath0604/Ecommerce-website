@@ -17,6 +17,9 @@ app.use(express.urlencoded({ extended: false }));
 
 const nodemailer = require("nodemailer");
 
+const multer = require("multer"); //For updloading image
+const upload = multer();
+
 //Declaring port
 
 app.listen(5000, () => {
@@ -38,7 +41,7 @@ mongoose
   })
   .catch((e) => console.log(e));
 
-//Importing schema
+//Importing User schema
 require("./models/Schema.jsx");
 const User = mongoose.model("userInfo");
 
@@ -259,5 +262,39 @@ app.post("/editUser", async (req, res) => {
     res
       .status(500)
       .send({ status: "error", message: "Failed to update user information" });
+  }
+});
+
+//Importing Product schema
+
+const Product = mongoose.model("product");
+
+//Upload Product API
+
+app.post("/uploadProduct", upload.single("product"), async (req, res) => {
+  try {
+    const { pName, pDescription, Price } = req.body;
+    const { buffer, mimetype } = req.file;
+
+    // Create a new product object
+    const newProduct = new Product({
+      pName,
+      pDescription,
+      Price,
+      image: {
+        data: buffer.toString("base64"),
+        contentType: mimetype,
+      },
+    });
+
+    // Save the product to the database
+    await newProduct.save();
+
+    res.send({ status: "ok", data: "Product uploaded successfully." });
+  } catch (error) {
+    console.error(error);
+    res
+      .status(500)
+      .send({ status: "error", message: "Failed to upload Product." });
   }
 });
