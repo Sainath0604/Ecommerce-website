@@ -82,24 +82,23 @@ function ViewUser() {
         <AdminNav />
         <div className="flex sm:w-full md:w-4/5 justify-center">
           <div>
-            <table className="border border-separate border-gray-500 w-[60vw]">
+            <table className="border border-separate border-gray-500 w-[55vw]">
               <caption className="caption-top my-8 lg:my-16 text-3xl font-bold text-gray-800">
                 All Users Information
               </caption>
               <thead className="h-14">
                 <tr>
-                  <th className="border border-gray-500 p-2 w-[11vw]">Name</th>
-                  <th className="border border-gray-500 p-2 w-[11vw]">
+                  <th className="border border-gray-500 p-2 w-[12vw]">Name</th>
+                  <th className="border border-gray-500 p-2 w-[12vw]">
                     Surname
                   </th>
-                  <th className="border border-gray-500 p-2 w-[16vw]">Email</th>
-                  <th className="border border-gray-500 p-2 w-[11vw]">
+                  <th className="border border-gray-500 p-2 w-[18vw]">Email</th>
+                  <th className="border border-gray-500 p-2 w-[12vw]">
                     User type
                   </th>
-                  <th className="border border-gray-500 p-2 w-[11vw]">
-                    Delete
+                  <th className="border border-gray-500 p-2 w-[12vw]">
+                    Actions
                   </th>
-                  <th className="border border-gray-500 p-2 w-[11vw]">Edit</th>
                 </tr>
               </thead>
               <tbody>
@@ -109,8 +108,8 @@ function ViewUser() {
                     <tr
                       key={i._id}
                       className={`${
-                        index % 2 === 0 ? "bg-rose-100" : "bg-white"
-                      }`}
+                        index % 2 === 0 ? "bg-gray-100" : "bg-white"
+                      } hover:bg-gray-200`}
                     >
                       <td className="border border-gray-500 p-2">{i.fName}</td>
                       <td className="border border-gray-500 p-2">{i.lName}</td>
@@ -119,39 +118,44 @@ function ViewUser() {
                         {i.userType}
                       </td>
                       <td className="border border-gray-500 p-2">
-                        <div className="flex justify-center">
-                          <RiDeleteBin6Line
-                            className="cursor-pointer text-gray-800"
-                            onClick={(e) => deleteUser(e, i._id, i.fName)}
-                          />
-                        </div>
-                      </td>
-                      <td className="border border-gray-500 p-2">
-                        <div className="flex justify-center ">
-                          <Popup
-                            trigger={
-                              <button className="button">
-                                <BiEditAlt className="text-gray-800" />
-                              </button>
-                            }
-                            modal
-                            nested
-                          >
-                            {(close) => (
-                              <div>
-                                <EditUser
-                                  id={i._id}
-                                  fName={i.fName}
-                                  lName={i.lName}
-                                  email={i.email}
-                                  onEdit={(id, newfName, newlName, newEmail) =>
-                                    editUser(id, newfName, newlName, newEmail)
-                                  }
-                                  onCancel={close}
-                                />
-                              </div>
-                            )}
-                          </Popup>
+                        <div className="flex justify-center flex-row">
+                          <div className="flex justify-center">
+                            <RiDeleteBin6Line
+                              className="cursor-pointer text-gray-800 mr-5 hover:text-gray-500 text-xl"
+                              onClick={(e) => deleteUser(e, i._id, i.fName)}
+                            />
+                          </div>
+                          <div className="flex justify-center ">
+                            <Popup
+                              trigger={
+                                <button className="button">
+                                  <BiEditAlt className="text-gray-800 hover:text-gray-500 text-xl" />
+                                </button>
+                              }
+                              modal
+                              nested
+                            >
+                              {(close) => (
+                                <div>
+                                  <EditUser
+                                    id={i._id}
+                                    fName={i.fName}
+                                    lName={i.lName}
+                                    email={i.email}
+                                    onEdit={(
+                                      id,
+                                      newfName,
+                                      newlName,
+                                      newEmail
+                                    ) =>
+                                      editUser(id, newfName, newlName, newEmail)
+                                    }
+                                    onCancel={close}
+                                  />
+                                </div>
+                              )}
+                            </Popup>
+                          </div>
                         </div>
                       </td>
                     </tr>
