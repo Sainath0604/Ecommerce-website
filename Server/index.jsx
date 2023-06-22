@@ -39,7 +39,7 @@ mongoose
   .catch((e) => console.log(e));
 
 //Importing schema
-require("./models/userSchema.jsx");
+require("./models/Schema.jsx");
 const User = mongoose.model("userInfo");
 
 //Register API
