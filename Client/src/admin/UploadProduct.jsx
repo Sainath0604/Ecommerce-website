@@ -5,17 +5,52 @@ import { BsCloudUpload } from "react-icons/Bs";
 function UploadProduct() {
   const [selectedFile, setSelectedFile] = useState(null);
   const [description, setDescription] = useState("");
+  const [productName, setProductName] = useState("");
+  const [productPrice, setProductPrice] = useState("");
 
   const handleFileChange = (event) => {
     setSelectedFile(event.target.files[0]);
   };
 
-  const handleDescriptionChange = (event) => {
+  const handleName = (event) => {
+    setProductName(event.target.value);
+  };
+  const handleDescription = (event) => {
     setDescription(event.target.value);
   };
+  const handlePrice = (event) => {
+    setProductPrice(event.target.value);
+  };
 
-  const handleUpload = () => {
-    console.log("uploaded");
+  const handleUpload = async () => {
+    try {
+      const formData = new FormData();
+      formData.append("product", selectedFile);
+      formData.append("pName", productName);
+      formData.append("pDescription", description);
+      formData.append("Price", productPrice);
+
+      const response = await fetch("http://localhost:5000/uploadProduct", {
+        method: "POST",
+        body: formData,
+      });
+
+      const data = await response.json();
+      console.log(data);
+
+      if (response.ok) {
+        alert("Product uploaded successfully.");
+        setSelectedFile(null);
+        setDescription("");
+        setProductName("");
+        setProductPrice("");
+      } else {
+        alert("Failed to upload product.");
+      }
+    } catch (error) {
+      console.error(error);
+      alert("Failed to upload product.");
+    }
   };
 
   return (
@@ -36,9 +71,9 @@ function UploadProduct() {
                 <input
                   className="border border-sky-400 rounded-lg p-1 w-80 h-12"
                   type="text"
-                  placeholder="Image Description"
-                  value={description}
-                  onChange={handleDescriptionChange}
+                  placeholder="Product Name"
+                  value={productName}
+                  onChange={handleName}
                 />
               </div>
               <div className="mb-2">
@@ -55,7 +90,7 @@ function UploadProduct() {
                   type="text"
                   placeholder="Product Description"
                   value={description}
-                  onChange={handleDescriptionChange}
+                  onChange={handleDescription}
                 />
               </div>
             </div>
@@ -82,8 +117,8 @@ function UploadProduct() {
                   className="border border-sky-400 rounded-lg p-1 w-80 h-12"
                   type="text"
                   placeholder="Price"
-                  value={description}
-                  onChange={handleDescriptionChange}
+                  value={productPrice}
+                  onChange={handlePrice}
                 />
               </div>
             </div>
