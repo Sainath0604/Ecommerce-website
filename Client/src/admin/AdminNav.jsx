@@ -14,7 +14,8 @@ function AdminNav() {
   };
 
   const navigation = [
-    { name: "View user", to: "/viewUser" },
+    { name: "View User", to: "/viewUser" },
+    { name: "Upload Products", to: "/uploadProduct" },
     { name: "New button", to: "#" },
   ];
 
@@ -42,6 +43,11 @@ function AdminNav() {
                 <Link to="/viewUser">
                   <div className=" hover:bg-gray-700 text-white font-base py-1 pl-1 rounded-md mb-2 ">
                     View Users
+                  </div>
+                </Link>
+                <Link to="/uploadProduct">
+                  <div className=" hover:bg-gray-700 text-white font-base py-1 pl-1 rounded-md mb-2 ">
+                    Upload Product
                   </div>
                 </Link>
                 <Link to="/viewUser">
