@@ -5,6 +5,7 @@ import EditUser from "./EditUser";
 import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
 import AdminNav from "./AdminNav";
+import "../CSS/Admin.css";
 
 function ViewUser() {
   const [data, setData] = useState([]);
@@ -79,8 +80,10 @@ function ViewUser() {
   return (
     <>
       <div className=" md:flex">
-        <AdminNav />
-        <div className="flex sm:w-full md:w-4/5 justify-center">
+        <div className="AdminNav w-full ">
+          <AdminNav />
+        </div>
+        <div className="flex sm:w-full md:w-4/5 justify-center ViewProduct">
           <div>
             <table className="border border-separate border-gray-500 w-[55vw]">
               <caption className="caption-top my-8 lg:my-16 text-3xl font-bold text-gray-800">
