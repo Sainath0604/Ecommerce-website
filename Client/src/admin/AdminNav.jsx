@@ -5,6 +5,8 @@ import { Disclosure } from "@headlessui/react";
 import { RxCross1 } from "react-icons/Rx";
 import { RxHamburgerMenu } from "react-icons/Rx";
 import { RiAdminFill } from "react-icons/Ri";
+import { BsUpload } from "react-icons/Bs";
+import { AiOutlineEye } from "react-icons/Ai";
 
 function AdminNav() {
   const logOut = (e) => {
@@ -39,15 +41,17 @@ function AdminNav() {
           </div>
           <div className="flex flex-col justify-between h-[79vh] px-8 ">
             <div className="mt-5 ">
-              <div className="text-lg ">
+              <div className="text-sm lg:text-lg ">
                 <Link to="/viewUser">
-                  <div className=" hover:bg-gray-700 text-white font-base py-1 pl-1 rounded-md mb-2 ">
-                    View Users
+                  <div className=" hover:bg-gray-700 text-white lg:font-base py-1 pl-1 rounded-md mb-2 flex items-center">
+                    <AiOutlineEye className="mr-3 lg:text-xl" />
+                    <span>View Users</span>
                   </div>
                 </Link>
                 <Link to="/uploadProduct">
-                  <div className=" hover:bg-gray-700 text-white font-base py-1 pl-1 rounded-md mb-2 ">
-                    Upload Product
+                  <div className=" hover:bg-gray-700 text-white lg:font-base py-1 pl-1 rounded-md mb-2 flex items-center">
+                    <BsUpload className="mr-3  lg:text-xl" />
+                    <span>Upload Product</span>
                   </div>
                 </Link>
                 <Link to="/viewUser">

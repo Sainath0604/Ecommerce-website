@@ -57,13 +57,13 @@ function UploadProduct() {
     <div className="md:flex">
       <AdminNav />
       <div className="flex sm:w-full md:w-4/5 justify-center">
-        <div className="flex flex-col items-center m-10 w-4/5">
-          <h1 className="flex items-center justify-center bg-gray-800 rounded-xl font-bold text-gray-100 text-xl w-96 h-12 p-5 my-10 shadow-lg hover:shadow-2xl">
+        <div className="flex flex-col items-center m-5 lg:m-10 w-4/5">
+          <h1 className="flex items-center justify-center bg-gray-800 rounded-xl font-bold text-gray-100 text-base lg:text-xl lg:w-96 h-10 lg:h-12 p-2 lg:p-5 my-10 shadow-lg hover:shadow-2xl">
             Upload Product Information
-            <BsCloudUpload className="text-2xl font-bold ml-5" />
+            <BsCloudUpload className="text-2xl font-bold ml-2 lg:ml-5" />
           </h1>
-          <div className="m-5 w-11/12 p-5 flex flex-col lg:flex-row justify-center gap-x-20">
-            <div className="p-5">
+          <div className="m-2 lg:m-5 w-11/12 p-2 lg:p-5 flex flex-col lg:flex-row justify-center lg:gap-x-20">
+            <div className=" lg:p-5">
               <div className="mb-2">
                 <label className="font-bold text-sky-900">Product Name:</label>
               </div>
@@ -81,7 +81,7 @@ function UploadProduct() {
                   Product description:
                 </label>
               </div>
-              <div className="mb-5">
+              <div className="mb-2 lg:mb-5">
                 <textarea
                   rows={4}
                   cols={40}
@@ -94,7 +94,7 @@ function UploadProduct() {
                 />
               </div>
             </div>
-            <div className=" p-5">
+            <div className=" lg:p-5">
               <div className="mb-2">
                 <label className="font-bold text-sky-900">
                   Upload product image:
@@ -123,9 +123,9 @@ function UploadProduct() {
               </div>
             </div>
           </div>
-          <div>
+          <div className="flex items-center">
             <button
-              className="border bg-gray-800 rounded-xl font-bold text-gray-100 p-2 mr-14 h-[100%] w-[100%]  text-lg  "
+              className="border bg-gray-800 rounded-xl font-bold text-gray-100 p-2 mr-14 h-[100%] w-[100%] text-md lg:text-lg  "
               onClick={handleUpload}
             >
               Upload
