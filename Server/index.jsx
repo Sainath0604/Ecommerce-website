@@ -310,7 +310,7 @@ app.get("/getProductInfo", async (req, res) => {
       Price: product.Price,
       image: {
         contentType: product.image.contentType,
-        data: `data:${image.image.contentType};base64,${image.image.data}`,
+        data: `data:${product.image.contentType};base64,${product.image.data}`,
       },
     }));
 

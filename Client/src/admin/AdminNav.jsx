@@ -7,6 +7,7 @@ import { RxHamburgerMenu } from "react-icons/Rx";
 import { RiAdminFill } from "react-icons/Ri";
 import { BsUpload } from "react-icons/Bs";
 import { AiOutlineEye } from "react-icons/Ai";
+import { BsDatabase } from "react-icons/Bs";
 
 function AdminNav() {
   const logOut = (e) => {
@@ -18,6 +19,7 @@ function AdminNav() {
   const navigation = [
     { name: "View User", to: "/viewUser" },
     { name: "Upload Products", to: "/uploadProduct" },
+    { name: "View Products", to: "/viewProduct" },
     { name: "New button", to: "#" },
   ];
 
@@ -51,7 +53,13 @@ function AdminNav() {
                 <Link to="/uploadProduct">
                   <div className=" hover:bg-gray-700 text-white lg:font-base py-1 pl-1 rounded-md mb-2 flex items-center">
                     <BsUpload className="mr-3  lg:text-xl" />
-                    <span>Upload Product</span>
+                    <span>Upload Products</span>
+                  </div>
+                </Link>
+                <Link to="/viewProduct">
+                  <div className=" hover:bg-gray-700 text-white lg:font-base py-1 pl-1 rounded-md mb-2 flex items-center">
+                    <BsDatabase className="mr-3  lg:text-xl" />
+                    <span>View Products</span>
                   </div>
                 </Link>
                 <Link to="/viewUser">
