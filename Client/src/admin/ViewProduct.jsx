@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import AdminNav from "./AdminNav";
 import { RiDeleteBin6Line } from "react-icons/Ri";
 import { BiEditAlt } from "react-icons/Bi";
+import "../CSS/Admin.css";
 
 function ViewProduct() {
   const [productInfo, setProductInfo] = useState([]);
@@ -23,9 +24,12 @@ function ViewProduct() {
   return (
     <>
       <div className=" md:flex">
-        <AdminNav />
-        <div className="flex sm:w-full md:w-4/5 justify-center">
-          <div>
+        <div className="AdminNav w-full ">
+          <AdminNav />
+        </div>
+
+        <div className="flex sm:w-full md:w-4/5 justify-center ViewProduct">
+          <div className="mb-10">
             <table className="border border-separate w-[68vw]">
               <caption className="caption-top my-12 text-3xl font-bold text-gray-900">
                 All Product information

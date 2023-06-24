@@ -323,3 +323,19 @@ app.get("/getProductInfo", async (req, res) => {
     });
   }
 });
+
+// Delete product information API
+
+app.post("/deleteProductInfo", async (req, res) => {
+  const { productId } = req.body;
+  try {
+    await Product.deleteOne({ _id: productId }),
+      function (err, res) {
+        console.log(err);
+      };
+    res.send({ status: "ok", data: "Product Info deleted" });
+  } catch (error) {
+    console.log(error);
+    res.send({ status: "error", data: "Failed to delete product Info" });
+  }
+});
