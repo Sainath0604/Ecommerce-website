@@ -339,3 +339,31 @@ app.post("/deleteProductInfo", async (req, res) => {
     res.send({ status: "error", data: "Failed to delete product Info" });
   }
 });
+
+// Edit product API
+
+app.post("/editProductInfo", upload.single("product"), async (req, res) => {
+  const { productId, pName, pDescription, Price } = req.body;
+  try {
+    let updateFields = { pName, pDescription, Price };
+
+    if (req.file) {
+      const { buffer, mimetype } = req.file;
+      updateFields.image = {
+        data: buffer.toString("base64"),
+        contentType: mimetype,
+      };
+    }
+
+    const updateQuery = updateFields.image
+      ? { $set: updateFields }
+      : updateFields;
+    await Product.updateOne({ _id: productId }, updateQuery);
+    res.send({ status: "ok", data: "Product Info updated" });
+  } catch (error) {
+    console.log(error);
+    res
+      .status(500)
+      .send({ status: "error", message: "Failed to update Product Info" });
+  }
+});
