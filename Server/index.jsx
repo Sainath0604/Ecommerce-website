@@ -269,14 +269,13 @@ app.post("/editUser", async (req, res) => {
 
 const Product = mongoose.model("product");
 
-//Upload Product API
+//Upload Product information API
 
 app.post("/uploadProduct", upload.single("product"), async (req, res) => {
   try {
     const { pName, pDescription, Price } = req.body;
     const { buffer, mimetype } = req.file;
 
-    // Create a new product object
     const newProduct = new Product({
       pName,
       pDescription,
@@ -287,7 +286,6 @@ app.post("/uploadProduct", upload.single("product"), async (req, res) => {
       },
     });
 
-    // Save the product to the database
     await newProduct.save();
 
     res.send({ status: "ok", data: "Product uploaded successfully." });
@@ -296,5 +294,32 @@ app.post("/uploadProduct", upload.single("product"), async (req, res) => {
     res
       .status(500)
       .send({ status: "error", message: "Failed to upload Product." });
+  }
+});
+
+//Retrieve Product information API
+
+app.get("/getProductInfo", async (req, res) => {
+  try {
+    const products = await Product.find();
+
+    const processedProduct = products.map((product) => ({
+      _id: product._id,
+      pName: product.pName,
+      pDescription: product.pDescription,
+      Price: product.Price,
+      image: {
+        contentType: product.image.contentType,
+        data: `data:${image.image.contentType};base64,${image.image.data}`,
+      },
+    }));
+
+    res.json(processedProduct);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      status: "error",
+      message: "Failed to retrieve product information.",
+    });
   }
 });
