@@ -10,8 +10,8 @@ import logo from "../Logo/logo.png";
 const navigation = [
   { name: "Dashboard", to: "/" },
   { name: "Shop", to: "/shop" },
-  { name: "Projects", href: "#", current: false },
-  { name: "Calendar", href: "#", current: false },
+  { name: "Projects", href: "#" },
+  { name: "Calendar", href: "#" },
 ];
 
 function classNames(...classes) {
