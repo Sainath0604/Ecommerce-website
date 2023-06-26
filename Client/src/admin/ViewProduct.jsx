@@ -4,6 +4,9 @@ import { RiDeleteBin6Line } from "react-icons/Ri";
 import { BiEditAlt } from "react-icons/Bi";
 import "../CSS/Admin.css";
 import { Oval } from "react-loader-spinner";
+import Popup from "reactjs-popup";
+import "reactjs-popup/dist/index.css";
+import EditProduct from "./EditProduct";
 
 function ViewProduct() {
   const [productInfo, setProductInfo] = useState([]);
@@ -50,6 +53,25 @@ function ViewProduct() {
     } else {
       alert("failed to delete product information");
     }
+  };
+
+  const editProductInfo = (formData) => {
+    fetch("http://localhost:5000/editProductInfo", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
+      body: formData,
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        alert(data.data);
+        fetchProductInfo();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
@@ -131,9 +153,31 @@ function ViewProduct() {
                             </div>
                             <div className="flex justify-center ">
                               <div className="flex justify-center ">
-                                <button className="button">
-                                  <BiEditAlt />
-                                </button>
+                                <Popup
+                                  trigger={
+                                    <button className="button">
+                                      <BiEditAlt />
+                                    </button>
+                                  }
+                                  modal
+                                  nested
+                                >
+                                  {(close) => (
+                                    <div>
+                                      <EditProduct
+                                        id={product._id}
+                                        pName={product.pName}
+                                        description={product.pDescription}
+                                        image={product.image.data}
+                                        price={product.Price}
+                                        onEdit={(formData) =>
+                                          editProductInfo(formData)
+                                        }
+                                        onCancel={close}
+                                      />
+                                    </div>
+                                  )}
+                                </Popup>
                               </div>
                             </div>
                           </div>

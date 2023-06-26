@@ -344,6 +344,13 @@ app.post("/deleteProductInfo", async (req, res) => {
 
 app.post("/editProductInfo", upload.single("product"), async (req, res) => {
   const { productId, pName, pDescription, Price } = req.body;
+
+  if (!productId) {
+    return res
+      .status(400)
+      .send({ status: "error", message: "Invalid productId." });
+  }
+
   try {
     let updateFields = { pName, pDescription, Price };
 
