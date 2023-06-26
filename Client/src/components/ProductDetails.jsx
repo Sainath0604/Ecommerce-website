@@ -1,13 +1,33 @@
 import Navbar from "./Navbar";
 import { BsFillCartPlusFill } from "react-icons/Bs";
 import { useLocation } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { addToBasket } from "./Reducer";
 
 function ProductDetails() {
+  const basket = useSelector((state) => state.basket.items);
+  const dispatch = useDispatch();
+
   const location = useLocation();
   const { id, pName, image, price, pDescription } = location.state;
 
   function addToCart() {
-    console.log("added");
+    console.log("clicked");
+    try {
+      dispatch(
+        addToBasket({
+          id: id,
+          pName: pName,
+          desc: pDescription,
+          price: price,
+          img_src: image,
+        })
+      );
+      console.log("Basket:", basket);
+      console.log("done");
+    } catch (error) {
+      console.log("error");
+    }
   }
 
   return (

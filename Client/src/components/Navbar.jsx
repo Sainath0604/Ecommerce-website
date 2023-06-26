@@ -6,6 +6,7 @@ import { FaSearch } from "react-icons/fa";
 import { BiUserCircle } from "react-icons/Bi";
 import { CgShoppingCart } from "react-icons/cg";
 import logo from "../Logo/logo.png";
+import { useSelector } from "react-redux";
 
 const navigation = [
   { name: "Dashboard", to: "/" },
@@ -19,6 +20,7 @@ function classNames(...classes) {
 }
 
 function Navbar() {
+  const basket = useSelector((state) => state.basket.items);
   return (
     <Disclosure as="nav" className="bg-gray-800">
       {({ open }) => (
@@ -87,13 +89,23 @@ function Navbar() {
                 </div>
               </div>
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                <Link to="#">
+                <Link to="/checkout">
                   <button
                     type="button"
                     className="rounded-full mr-2 lg:mr-6 bg-gray-800 p-1 text-gray-400 hover:text-white "
                   >
                     <span className="sr-only">Add to cart</span>
-                    <CgShoppingCart className="h-6 w-6" aria-hidden="true" />
+                    <div className="flex flex-row items-center justify-center">
+                      <span className="mr-1">
+                        <CgShoppingCart
+                          className="h-6 w-6"
+                          aria-hidden="true"
+                        />
+                      </span>
+                      <span>
+                        {basket.length === 0 ? <span></span> : basket.length}
+                      </span>
+                    </div>
                   </button>
                 </Link>
                 <Link to="/signIn">
