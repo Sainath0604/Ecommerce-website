@@ -9,7 +9,7 @@ import logo from "../Logo/logo.png";
 
 const navigation = [
   { name: "Dashboard", to: "/" },
-  { name: "Team", href: "#", current: false },
+  { name: "Shop", to: "/shop" },
   { name: "Projects", href: "#", current: false },
   { name: "Calendar", href: "#", current: false },
 ];

@@ -15,6 +15,7 @@ import ErrorPage from "./components/ErrorPage";
 import { useEffect, useState } from "react";
 import UploadProduct from "./admin/UploadProduct";
 import ViewProduct from "./admin/ViewProduct";
+import Shop from "./components/Shop";
 
 function App() {
   const isLoggedIn = window.localStorage.getItem("loggedIn");
@@ -64,6 +65,7 @@ function App() {
             <Route path="/errorPage" element={<ErrorPage />} />
             <Route path="/uploadProduct" element={<UploadProduct />} />
             <Route path="/viewProduct" element={<ViewProduct />} />
+            <Route path="/shop" element={<Shop />} />
           </Routes>
         </Router>
       </div>
