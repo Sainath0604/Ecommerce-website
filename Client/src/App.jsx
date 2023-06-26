@@ -16,6 +16,7 @@ import { useEffect, useState } from "react";
 import UploadProduct from "./admin/UploadProduct";
 import ViewProduct from "./admin/ViewProduct";
 import Shop from "./components/Shop";
+import ProductDetails from "./components/ProductDetails";
 
 function App() {
   const isLoggedIn = window.localStorage.getItem("loggedIn");
@@ -66,6 +67,7 @@ function App() {
             <Route path="/uploadProduct" element={<UploadProduct />} />
             <Route path="/viewProduct" element={<ViewProduct />} />
             <Route path="/shop" element={<Shop />} />
+            <Route path="/productDetails" element={<ProductDetails />} />
           </Routes>
         </Router>
       </div>

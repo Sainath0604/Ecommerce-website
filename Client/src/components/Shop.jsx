@@ -66,22 +66,23 @@ function Shop() {
                     <h3 className="text-xl text-black font-bold mb-2 ">
                       {product.pName}
                     </h3>
+
                     <p className="text-slate-950 text-lg mb-4">
                       <span className="font-semibold">Price:</span>{" "}
                       <span className="font-bold">
                         $<span>{product.Price}</span>
                       </span>
                     </p>
-
                     <button
                       className="card-btn hidden absolute top-[-100%] left-1/2 transform translate-x-[-50%] translate-y-[-50%] py-2 px-4 text-white bg-indigo-500 rounded-md"
                       onClick={() =>
                         navigate("/productDetails", {
                           state: {
                             id: product._id,
+                            pName: product.pName,
                             image: product.image.data,
                             price: product.Price,
-                            description: product.pdescription,
+                            pDescription: product.pDescription,
                           },
                         })
                       }

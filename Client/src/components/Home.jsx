@@ -6,7 +6,7 @@ function Home() {
   return (
     <div className="h-screen">
       <Navbar />
-      <div className="bgImage h-[89.3vh] md:h-[91.2vh] lg:h-[91.9vh] flex justify-center items-center relative">
+      <div className="bgImage h-[92.9vh] md:h-[91.2vh] lg:h-[91.9vh] flex justify-center items-center relative">
         <div>
           <div className="flex flex-col justify-center items-center h-full relative">
             <h1 className="text-2xl md:text-5xl font-bold text-gray-300 mb-10 md:mb-16 pl-10 md:pl-16 lg:pl-0">
