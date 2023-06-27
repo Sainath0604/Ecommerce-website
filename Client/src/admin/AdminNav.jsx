@@ -62,11 +62,11 @@ function AdminNav() {
                     <span>View Products</span>
                   </div>
                 </Link>
-                <Link to="/viewUser">
+                {/* <Link to="/viewUser">
                   <div className=" hover:bg-gray-700 text-white font-base py-1 pl-1 rounded-md">
                     New button
                   </div>
-                </Link>
+                </Link> */}
               </div>
             </div>
             <div className="pl-1 pb-3">

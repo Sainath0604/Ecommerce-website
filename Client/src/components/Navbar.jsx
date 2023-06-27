@@ -11,8 +11,6 @@ import { useSelector } from "react-redux";
 const navigation = [
   { name: "Dashboard", to: "/" },
   { name: "Shop", to: "/shop" },
-  { name: "Projects", href: "#" },
-  { name: "Calendar", href: "#" },
 ];
 
 function classNames(...classes) {
