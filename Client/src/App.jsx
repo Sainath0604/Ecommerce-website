@@ -18,6 +18,7 @@ import ViewProduct from "./admin/ViewProduct";
 import Shop from "./components/Shop";
 import ProductDetails from "./components/ProductDetails";
 import Checkout from "./components/Checkout";
+import Payment from "./components/Payment";
 
 function App() {
   const isLoggedIn = window.localStorage.getItem("loggedIn");
@@ -70,6 +71,7 @@ function App() {
             <Route path="/shop" element={<Shop />} />
             <Route path="/productDetails" element={<ProductDetails />} />
             <Route path="/checkout" element={<Checkout />} />
+            <Route path="/payment" element={<Payment />} />
           </Routes>
         </Router>
       </div>

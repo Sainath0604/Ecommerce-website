@@ -39,7 +39,7 @@ function CheckoutProduct() {
                     <div className=" h-12">
                       <span className="mr-2 font-medium">Price:</span>
                       <span className="font-semibold text-lg">
-                        $<span>{item.price}</span>
+                        ₹<span>{item.price}</span>
                       </span>
                     </div>
                   </div>

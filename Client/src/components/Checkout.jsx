@@ -57,7 +57,7 @@ function Checkout() {
                   </div>
                 </div>
               ) : (
-                <h1 className="ml-5">Guest</h1>
+                <h1 className="ml-5 font-semibold text-2xl">Guest</h1>
               )}
               <div className="font-bold text-2xl mt-5">
                 Your shopping cart is here

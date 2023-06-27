@@ -20,7 +20,7 @@ function Subtotal() {
         <div>
           <span className="mr-2 font-semibold text-2xl">Sub-total:</span>
           <span className="font-bold text-2xl">
-            $<span className="underline decoration-indigo-500">{total}</span>
+            ₹<span className="underline decoration-indigo-500">{total}</span>
           </span>
         </div>
       </div>

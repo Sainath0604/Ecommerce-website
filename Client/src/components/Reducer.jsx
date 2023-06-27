@@ -30,6 +30,12 @@ export const { addToBasket, emptyBasket, removeFromBasket } =
   basketSlice.actions;
 
 export const getBasketTotal = (basket) =>
-  basket?.reduce((amount, item) => item.price + amount, 0);
+  basket?.reduce((amount, item) => {
+    const itemPrice = parseFloat(item.price);
+    if (!isNaN(itemPrice)) {
+      return itemPrice + amount;
+    }
+    return amount;
+  }, 0);
 
 export default basketSlice.reducer;
