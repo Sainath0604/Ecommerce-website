@@ -4,7 +4,7 @@ import "../CSS/component.css";
 
 function Home() {
   return (
-    <div className="h-screen">
+    <div>
       <Navbar />
       <div className="bgImage h-[92.9vh] md:h-[91.2vh] lg:h-[91.9vh] flex justify-center items-center relative">
         <div>
