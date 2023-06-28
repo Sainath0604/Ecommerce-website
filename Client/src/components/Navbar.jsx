@@ -20,8 +20,11 @@ function classNames(...classes) {
 function Navbar() {
   const basket = useSelector((state) => state.basket.items);
   return (
-    <div>
-      <Disclosure as="nav" className="bg-gray-800 sticky">
+    <div className="h-[10vh]">
+      <Disclosure
+        as="nav"
+        className="bg-gray-800 sticky border-b border-indigo-400"
+      >
         {({ open }) => (
           <>
             <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">

@@ -3,6 +3,7 @@ import Navbar from "./Navbar";
 import PropTypes from "prop-types";
 import CheckoutProduct from "./CheckoutProduct";
 import Subtotal from "./Subtotal";
+import Footer from "./Footer";
 
 function Checkout() {
   const isLoggedIn = window.localStorage.getItem("loggedIn");
@@ -34,46 +35,53 @@ function Checkout() {
   }, []);
 
   return (
-    <div className="bg-gray-50">
-      <Navbar />
-      <div className="flex flex-col w-full lg:flex-row lg:mx-5 lg:mt-5 mb-8 px-5 md:px-20 lg:px-10 pt-10 lg:pt-5 pb-10 lg:pb-5 gap-y-8 lg:gap-x-12">
-        <div className="p-5 w-full lg:w-[70%] ">
-          <div className="">
-            <div className="h-36">
-              <div className="font-bold text-2xl">Hello,</div>
-              {isLoggedIn == "true" ? (
-                <div className="flex flex-col ml-5 ">
-                  <div>
-                    <span className="mr-2 font-medium text-xl">Name:</span>
-                    <span className="font-semibold text-2xl">
-                      {userData.fName}
-                    </span>
+    <div className="flex flex-col min-h-screen bg-indigo-100">
+      <nav>
+        <Navbar />
+      </nav>
+      <main className="flex-grow">
+        <div className="flex flex-col  lg:flex-row lg:mx-5 lg:mt-5 mb-8 px-5 md:px-20 lg:px-10 pt-10 lg:pt-5 pb-10 lg:pb-5 gap-y-8 lg:gap-x-12">
+          <div className="p-5 w-full lg:w-[70%] ">
+            <div className="">
+              <div className="h-36">
+                <div className="font-bold text-2xl">Hello,</div>
+                {isLoggedIn == "true" ? (
+                  <div className="flex flex-col ml-5 ">
+                    <div>
+                      <span className="mr-2 font-medium text-xl">Name:</span>
+                      <span className="font-semibold text-2xl">
+                        {userData.fName}
+                      </span>
+                    </div>
+                    <div>
+                      <span className="mr-2  font-medium text-xl">Email:</span>
+                      <span className="font-semibold text-2xl">
+                        {userData.email}
+                      </span>
+                    </div>
                   </div>
-                  <div>
-                    <span className="mr-2  font-medium text-xl">Email:</span>
-                    <span className="font-semibold text-2xl">
-                      {userData.email}
-                    </span>
-                  </div>
+                ) : (
+                  <h1 className="ml-5 font-semibold text-2xl">Guest</h1>
+                )}
+                <div className="font-bold text-2xl mt-5">
+                  Your shopping cart is here
                 </div>
-              ) : (
-                <h1 className="ml-5 font-semibold text-2xl">Guest</h1>
-              )}
-              <div className="font-bold text-2xl mt-5">
-                Your shopping cart is here
               </div>
             </div>
+            <div>
+              <CheckoutProduct />
+            </div>
           </div>
-          <div>
-            <CheckoutProduct />
+          <div className=" gap-y-5 w-full lg:w-1/4">
+            <div className="flex flex-col p-5">
+              <Subtotal />
+            </div>
           </div>
         </div>
-        <div className=" gap-y-5 w-full lg:w-1/4">
-          <div className="flex flex-col p-5">
-            <Subtotal />
-          </div>
-        </div>
-      </div>
+      </main>
+      <footer>
+        <Footer />
+      </footer>
     </div>
   );
 }

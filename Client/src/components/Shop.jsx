@@ -3,6 +3,7 @@ import Navbar from "./Navbar";
 import { useNavigate } from "react-router-dom";
 import { Oval } from "react-loader-spinner";
 import "../css/component.css";
+import Footer from "./Footer";
 
 function Shop() {
   const navigate = useNavigate();
@@ -28,12 +29,12 @@ function Shop() {
   };
 
   return (
-    <div className="h-full bg-indigo-100">
-      <div>
+    <div className="flex flex-col min-h-screen bg-indigo-100">
+      <nav>
         <Navbar />
-      </div>
+      </nav>
 
-      <div className="bg-indigo-100 h-full">
+      <main className="bg-indigo-100 flex-grow">
         {loading ? (
           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
             <Oval
@@ -95,7 +96,10 @@ function Shop() {
             </div>
           </div>
         )}
-      </div>
+      </main>
+      <footer>
+        <Footer />
+      </footer>
     </div>
   );
 }

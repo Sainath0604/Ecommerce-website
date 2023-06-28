@@ -16,11 +16,11 @@ function CheckoutProduct() {
 
   return (
     <div>
-      <div className="flex flex-col  gap-y-2">
+      <div className="flex flex-col gap-y-2">
         {basket.map((item) => (
           <div className="flex flex-col " key={item.id}>
-            <div className=" mt-5 bg-gray-100">
-              <div className="border border-gray-300 h-48 lg:h-60 p-2 flex items-center lg:gap-x-2 rounded-lg shadow-xl">
+            <div className=" mt-5 ">
+              <div className="bg-gray-100 border border-gray-300 h-48 lg:h-60 p-2 flex items-center lg:gap-x-2 rounded-lg shadow-xl">
                 <div className="h-44 w-64  ">
                   <img
                     className="w-full h-full lg:w-full lg:h-full object-contain drop-shadow-2xl rounded-md "
