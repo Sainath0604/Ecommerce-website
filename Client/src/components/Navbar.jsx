@@ -7,6 +7,7 @@ import { CgShoppingCart } from "react-icons/cg";
 import logo from "../Logo/logo.png";
 import { useSelector } from "react-redux";
 import Searchbar from "./Searchbar";
+import Theme from "./Theme";
 
 const navigation = [
   { name: "Dashboard", to: "/" },
@@ -20,14 +21,14 @@ function classNames(...classes) {
 function Navbar() {
   const basket = useSelector((state) => state.basket.items);
   return (
-    <div className="h-[10vh]">
+    <div>
       <Disclosure
         as="nav"
-        className="bg-gray-800 sticky border-b border-indigo-400"
+        className="bg-gray-800 sticky border-b border-indigo-400 "
       >
         {({ open }) => (
           <>
-            <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+            <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 ">
               <div className="relative h-[10vh] flex items-center justify-between">
                 <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
                   {/* Mobile menu button*/}
@@ -79,6 +80,9 @@ function Navbar() {
 
                   <div className="hidden sm:ml-6 sm:block">
                     <Searchbar />
+                  </div>
+                  <div className="hidden sm:ml-6 sm:block">
+                    <Theme />
                   </div>
                 </div>
                 <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">

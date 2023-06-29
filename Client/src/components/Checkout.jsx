@@ -35,7 +35,7 @@ function Checkout() {
   }, []);
 
   return (
-    <div className="flex flex-col min-h-screen bg-indigo-100">
+    <div className="flex flex-col min-h-screen bg-indigo-100 dark:bg-lime-400">
       <nav>
         <Navbar />
       </nav>
